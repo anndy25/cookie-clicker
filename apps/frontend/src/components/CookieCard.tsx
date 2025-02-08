@@ -9,6 +9,7 @@ const CookieCard = () => {
   const [counter, setCounter] = useState(0);
   const [rewards, setRewards] = useState(0);
   const [feedback, setFeedback] = useState('');
+  const [loading, setLoading] = useState(false);
   const { userInfo, removeUser } = useUser();
 
   useEffect(() => {
@@ -25,6 +26,9 @@ const CookieCard = () => {
   }, []);
 
   const handleClick = async () => {
+    if (loading) return;
+
+    setLoading(true);
     try {
       const res = await axios.post(`${API_BASE_URL}/increment`, {
         userId: userInfo?.userId,
@@ -40,10 +44,14 @@ const CookieCard = () => {
       setRewards(res.data.rewards);
     } catch (error) {
       console.error('Error incrementing counter:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const debouncedHandleClick = useCallback(debounce(handleClick, 300), []);
+  const debouncedHandleClick = useCallback(debounce(handleClick, 50), [
+    loading,
+  ]);
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
@@ -79,9 +87,14 @@ const CookieCard = () => {
 
         <button
           onClick={debouncedHandleClick}
-          className="px-6 py-2 text-lg font-bold text-white transition-transform transform bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 hover:scale-105"
+          disabled={loading}
+          className={`px-6 py-2 text-lg font-bold text-white transition-transform transform rounded-lg shadow-lg ${
+            loading
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-blue-500 hover:bg-blue-600 hover:scale-105'
+          }`}
         >
-          Click Me!
+          {loading ? 'Loading...' : 'Click Me!'}
         </button>
       </div>
     </div>
