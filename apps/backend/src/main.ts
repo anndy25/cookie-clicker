@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import { incrementCounter, getUserData, createOrGetUser } from './jobs/main';
 import dotenv from 'dotenv';
@@ -18,7 +18,11 @@ app.use(express.json());
 const MONGO_URI = process.env.MONGO_URI as string;
 mongoose.set('strictQuery', false);
 mongoose
-  .connect(MONGO_URI)
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 50000, // 10 seconds timeout
+  } as ConnectOptions)
   .then(() => console.log('MongoDB Atlas connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
