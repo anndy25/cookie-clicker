@@ -1,17 +1,19 @@
 # Cookie Clicker Game
 
+🔗 **Play Here:** [Cookie Clicker Game](https://cookie-maker.netlify.app/)
+
 ## 🚀 Getting Started
 
 Follow the steps below to set up and run the project locally.
 
-### 📥 Clone the Repository
+### 👅 Clone the Repository
 
 ```sh
 git clone https://github.com/anndy25/cookie-clicker.git
 cd cookie-clicker
 ```
 
-### 📦 Install Dependencies
+### 📞 Install Dependencies
 
 ```sh
 npm install
@@ -41,19 +43,19 @@ Once both frontend and backend are running, open your browser and start playing 
 - **Frontend:** React + TypeScript + TailwindCSS
 - **Backend:** Node.js + Express + MongoDB
 
-## 📂 Folder Structure
+## 🐂 Folder Structure
 
 ```
-📦 project-folder
-├── 📁 frontend
-│   ├── 📁 src
-│   ├── 📄 package.json
-│   └── ...
-├── 📁 backend
-│   ├── 📁 src
-│   ├── 📄 package.json
-│   └── ...
-└── 📄 README.md
+📚 project-folder
+📚 frontend
+📚 src
+📄 package.json
+...
+📚 backend
+📚 src
+📄 package.json
+...
+📄 README.md
 ```
 
 ## 🔗 API Endpoints
