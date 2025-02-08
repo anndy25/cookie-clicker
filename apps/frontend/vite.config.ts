@@ -10,6 +10,9 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
+    watch: {
+      ignored: ['**/node_modules/**', '**/dist/**'],
+    },
   },
   preview: {
     port: 4300,

@@ -1,11 +1,10 @@
-import NxWelcome from './nx-welcome';
+import CookieCard from '../components/CookieCard';
+import Login from '../components/Login';
+import { useUser } from '../hooks/useUser';
 
-export function App() {
-  return (
-    <div>
-      <NxWelcome title="frontend" />
-    </div>
-  );
-}
+const App = () => {
+  const { userInfo } = useUser();
+  return <div>{userInfo?.username?.length ? <CookieCard /> : <Login />}</div>;
+};
 
 export default App;
